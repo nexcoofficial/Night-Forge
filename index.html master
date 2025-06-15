@@ -1,627 +1,439 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[PRODUCT_NAME] - [TAGLINE]</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Animated Background */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(-45deg, #667eea, #764ba2, #667eea, #764ba2);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: transparent;
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-        
-        .hero-badge {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50px;
-            padding: 15px 30px;
-            margin-bottom: 30px;
-            display: inline-block;
-            animation: glow 2s infinite alternate;
-        }
-        
-        @keyframes glow {
-            from { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
-            to { box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
-        }
-        
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: slideDown 1s ease;
-        }
-        
-        .hero .subtitle {
-            font-size: 1.6rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-            animation: slideUp 1s ease 0.3s both;
-        }
-        
-        .social-proof {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 30px 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .social-proof h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #00ff88;
-        }
-        
-        .watching-now {
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            font-weight: bold;
-            animation: pulse 2s infinite;
-        }
-        
-        /* Product Images Section */
-        .product-showcase {
-            background: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .product-images {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-        
-        .product-image {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .product-image:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-        }
-        
-        .product-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        /* Features Grid */
-        .features {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0;
-        }
-        
-        .features h2 {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 60px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-        
-        .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .feature-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            background: #2c3e50;
-            color: white;
-            padding: 80px 0;
-        }
-        
-        .testimonial-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .testimonial-header h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .testimonial-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 30px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.15);
-        }
-        
-        .stars {
-            color: #ffd700;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-        
-        /* Urgency Section */
-        .urgency {
-            background: linear-gradient(45deg, #ff6b6b, #ff4757);
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .urgency::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            animation: shine 3s infinite;
-        }
-        
-        @keyframes shine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-        
-        .urgency h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            animation: flash 1s infinite alternate;
-        }
-        
-        @keyframes flash {
-            from { opacity: 1; }
-            to { opacity: 0.7; }
-        }
-        
-        .countdown {
-            font-size: 2rem;
-            margin: 20px 0;
-            font-weight: bold;
-            background: rgba(0,0,0,0.3);
-            padding: 15px 30px;
-            border-radius: 50px;
-            display: inline-block;
-        }
-        
-        /* Order Button */
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-            color: white;
-            padding: 20px 50px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.4rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            border: none;
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-        
-        .cta-button:hover::before {
-            left: 100%;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
-        }
-        
-        /* Final CTA */
-        .final-cta {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: white;
-            padding: 100px 0;
-            text-align: center;
-        }
-        
-        .price-section {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 20px;
-            padding: 50px;
-            margin: 40px 0;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .price {
-            font-size: 4rem;
-            font-weight: bold;
-            margin: 20px 0;
-            color: #00ff88;
-        }
-        
-        .old-price {
-            text-decoration: line-through;
-            color: #95a5a6;
-            font-size: 2.5rem;
-        }
-        
-        .guarantee {
-            background: linear-gradient(45deg, #00ff88, #00cc66);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            font-weight: bold;
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .product-images {
-                grid-template-columns: 1fr;
-            }
-            
-            .price {
-                font-size: 3rem;
-            }
-            
-            .container {
-                padding: 0 15px;
-            }
-        }
-        
-        /* Animations */
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Night Forge | nexco – Modern Black Leather Jacket</title>
+  <meta name="description" content="Night Forge by nexco — Modern black leather jacket. Free shipping, secure PayPal checkout, 24/7 support. Shop now for a bold, timeless look.">
+  <meta name="keywords" content="leather jacket, black jacket, nexco, Night Forge, fashion, PayPal, e-commerce, modern, minimalist, free shipping, unisex">
+  <meta name="theme-color" content="#2367d1">
+  <link rel="icon" href="https://cdn.orderonline.id/uploads/images_4147541749587339195.png" type="image/png">
+  <style>
+    :root {
+      --primary: #2367d1;
+      --primary-dark: #174a96;
+      --accent: #f5f7fb;
+      --text: #1a2233;
+      --muted: #7a8699;
+      --success: #2ecc40;
+      --error: #ff4136;
+      --black: #191919;
+      --white: #fff;
+      --radius: 12px;
+      --transition: 0.15s ease;
+      --shadow: 0 2px 24px rgba(35, 103, 209, 0.09);
+    }
+    html, body {
+      margin: 0; padding: 0; font-family: 'Inter', Arial, sans-serif;
+      background: var(--accent);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+    *, *:before, *:after { box-sizing: border-box; }
+
+    a { color: var(--primary); text-decoration: none; transition: color var(--transition);}
+    a:hover { color: var(--primary-dark); }
+
+    /* Layout */
+    .split {
+      display: flex; flex-wrap: wrap; min-height: 100vh; align-items: stretch;
+    }
+    .split-left, .split-right {
+      flex: 1 1 400px; min-width: 360px; padding: 3vw 5vw;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--white);
+    }
+    .split-left {
+      background: linear-gradient(120deg, var(--primary) 60%, #0b1a2b 100%);
+      color: var(--white);
+      box-shadow: var(--shadow);
+      position: relative;
+      z-index: 1;
+    }
+    .split-right {
+      background: var(--white);
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .split { flex-direction: column; }
+      .split-left, .split-right { min-width: unset; padding: 7vw 5vw; }
+    }
+    @media (max-width: 600px) {
+      .split-left, .split-right { padding: 6vw 3vw; }
+      h1 { font-size: 2rem; }
+    }
+
+    /* Hero */
+    .hero-logo { width: 72px; height: 72px; border-radius: 50%; margin-bottom: 1.5rem; background: var(--white);}
+    .hero-headline { font-size: 2.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; }
+    .hero-sub { font-size: 1.2rem; color: #d2e5ff; margin-bottom: 2.2rem;}
+    .hero-img {
+      width: 100%; max-width: 440px; border-radius: var(--radius); box-shadow: 0 5px 32px rgba(0,0,0,.14);
+      background: #111; margin-bottom: 1.5rem;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 4/5;
+    }
+    .call-to-action {
+      display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; margin-top: 2rem;
+    }
+    .cta-main {
+      background: var(--success); color: var(--white); border: none; font-size: 1.1rem;
+      padding: 1rem 2.2rem; border-radius: var(--radius); font-weight: 600; cursor: pointer;
+      box-shadow: 0 2px 8px rgba(46,204,64,.11); transition: background var(--transition);
+    }
+    .cta-main:hover { background: #229b38; }
+    .trust-badges { margin-top: 1.2rem; display: flex; gap: 1rem; align-items: center; }
+    .trust-badge { height: 32px; }
+
+    /* Product Showcase */
+    .showcase { margin-bottom: 2rem; }
+    .gallery { display: flex; gap: 1.1rem; margin-bottom: 2rem; overflow-x: auto; }
+    .gallery img { width: 100px; height: 130px; object-fit: cover; border-radius: var(--radius); background: #eee; box-shadow: 0 2px 8px rgba(0,0,0,.07);}
+    .details { margin-bottom: 2rem;}
+    .details ul { padding-left: 1.5rem; margin: 0;}
+    .details li { margin-bottom: 0.7rem;}
+    .variant-group { display: flex; gap: 1.1rem; flex-wrap: wrap; margin-bottom: 1.2rem;}
+    .variant-btn {
+      border: 1.5px solid var(--primary); background: var(--white); color: var(--primary);
+      border-radius: var(--radius); padding: 0.5rem 1.4rem; cursor: pointer; font-size: 1rem;
+      margin-bottom: 0.5rem;
+      transition: background var(--transition), color var(--transition);
+    }
+    .variant-btn.selected, .variant-btn:focus {
+      background: var(--primary); color: var(--white); outline: none;
+    }
+    .variant-btn:active { background: var(--primary-dark);}
+    .variant-label { font-weight: 600; margin-right: 0.8rem;}
+
+    /* Pricing & PayPal */
+    .pricing-box {
+      border: 1.5px solid var(--primary); background: var(--accent);
+      border-radius: var(--radius); padding: 1.7rem 1.3rem; margin-bottom: 2rem;
+      box-shadow: 0 1px 8px rgba(35,103,209,.06);
+      max-width: 420px;
+      margin-left: auto; margin-right: auto;
+    }
+    .price-row { display: flex; align-items: baseline; gap: 1rem; font-size: 1.45rem; font-weight: 600; }
+    .price-old { color: #999; text-decoration: line-through; font-size: 1.1rem; }
+    .price-discount { color: var(--success); font-size: 1rem; font-weight: 500;}
+    .paypal-form, .paypal-btn {
+      width: 100%; display: block;
+    }
+    .paypal-btn {
+      background: #009cde; color: #fff; font-size: 1.07rem; font-weight: bold;
+      border: none; border-radius: var(--radius); padding: 1rem 0;
+      margin-top: 1.2rem; cursor: pointer; transition: background var(--transition);
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .paypal-btn:hover { background: #006fa1; }
+    .secure-pay { margin-top: 1rem; color: var(--muted); font-size: 0.97rem; display: flex; align-items: center; gap:0.5rem;}
+    .secure-pay svg { color: #11c580; }
+
+    /* Social Proof */
+    .testimonials, .reviews { margin-bottom: 2.5rem;}
+    .testimonial-list { display: flex; gap: 2rem; flex-wrap: wrap;}
+    .testimonial { background: var(--accent); border-radius: var(--radius); padding: 1.2rem 1rem; box-shadow: 0 1px 6px rgba(35,103,209,.08); max-width: 320px;}
+    .testimonial .user { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem;}
+    .testimonial .user img { width: 38px; height: 38px; border-radius: 50%; }
+    .testimonial .name { font-weight: 600; font-size: 1rem;}
+    .testimonial .stars { color: #ffce31; font-size: 1.15rem;}
+    .trust-badge-row { display: flex; gap: 1.2rem; margin-top: 1.2rem; }
+    .badge-img { height: 36px; }
+
+    /* FAQ */
+    .faq { margin-bottom: 2.5rem;}
+    .faq-item { margin-bottom: 1.3rem;}
+    .faq-q { font-weight: 600; cursor: pointer; padding: 0.7rem 0; }
+    .faq-a { display: none; padding-left: 0.7rem; color: var(--muted); font-size: 0.99rem;}
+    .faq-item.open .faq-a { display: block; }
+
+    /* Footer */
+    footer {
+      background: var(--primary-dark); color: var(--white); padding: 2.2rem 0 1.5rem;
+      text-align: center; font-size: 1rem; position: relative; z-index: 2;
+    }
+    .footer-links { margin-bottom: 1rem;}
+    .footer-links a { color: #c6e0ff; margin: 0 0.9rem; display: inline-block;}
+    .footer-links a:hover { color: var(--white); }
+    .footer-legal { font-size: 0.92rem; color: #b3d5f3;}
+    /* Misc */
+    .sr-only { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .analytics-pixel { display: none; }
+  </style>
+  <!-- SEO & Analytics Ready -->
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "name": "Night Forge",
+    "image": [
+      "https://cdn.orderonline.id/uploads/images_7470321735137133587.png"
+    ],
+    "description": "A sleek and modern black leather jacket that elevates your everyday look — bold, clean, and timeless.",
+    "brand": { "@type": "Brand", "name": "nexco" },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "USD",
+      "price": "68.00",
+      "availability": "http://schema.org/InStock"
+    },
+    "sku": "night-forge-leather-jacket"
+  }
+  </script>
 </head>
 <body>
-    <div class="animated-bg"></div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span style="color:#008B8B; font-size: 1.2rem; font-weight: bold;">[QUALITY_BADGE]</span>
-                </div>
-                
-                <h1>[PRODUCT_NAME]</h1>
-                <p class="subtitle">[PRODUCT_SUBTITLE]</p>
-                
-                <div class="social-proof">
-                    <h3>👍 Telah direkomendasikan oleh <span style="color:#00ff88">[SOCIAL_PROOF_COUNT]</span> <span style="color:#ff6b6b">di Facebook, Twitter, dan Instagram</span></h3>
-                    
-                    <div class="watching-now">
-                        👀 <span id="viewers">[VIEWERS_COUNT]</span> orang <span style="color:#00ff88">sedang menonton ini sekarang</span>
-                    </div>
-                </div>
-                
-                <button class="cta-button" onclick="orderNow()">[CTA_TEXT]</button>
-            </div>
-        </div>
+  <main class="split" aria-label="Landing page split screen">
+    <!-- Left (Hero) -->
+    <section class="split-left" aria-label="Hero Section">
+      <img src="https://cdn.orderonline.id/uploads/images_4147541749587339195.png" alt="nexco logo" class="hero-logo" width="72" height="72" loading="lazy">
+      <h1 class="hero-headline">Night Forge: Modern Black Leather Jacket</h1>
+      <div class="hero-sub">Bold. Clean. Timeless. Unisex fit. <b>Free Shipping</b> &bull; <b>Secure Payments</b></div>
+      <img src="https://cdn.orderonline.id/uploads/images_7470321735137133587.png" alt="Night Forge leather jacket main" class="hero-img" width="440" height="550" loading="eager">
+      <div class="call-to-action">
+        <a href="#buy-now" class="cta-main" aria-label="Buy Night Forge with PayPal">Buy Now – $68.00</a>
+      </div>
+      <div class="trust-badges" aria-label="Trust Badges">
+        <img src="https://www.sslshopper.com/assets/images/badges/comodo_secure_seal_113x59_transp.png" alt="SSL Secure" class="trust-badge" loading="lazy">
+        <img src="https://cdn.iconscout.com/icon/free/png-128/paypal-169.png" alt="PayPal" class="trust-badge" loading="lazy">
+        <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Money-back guarantee" class="trust-badge" loading="lazy">
+      </div>
     </section>
 
-    <!-- Product Showcase -->
-    <section class="product-showcase">
-        <div class="container">
-            <div class="quality-badge" style="background: linear-gradient(45deg, #00ff88, #00cc66); color: white; padding: 20px 40px; border-radius: 50px; font-size: 1.5rem; font-weight: bold; display: inline-block; margin-bottom: 30px; animation: bounce 2s infinite;">
-                [GUARANTEE_TEXT]
-            </div>
-            
-            <div class="product-images">
-                <!-- REPLACE WITH ACTUAL PRODUCT IMAGES -->
-                <div class="product-image floating">
-                    <img src="[IMAGE_1_URL]" alt="[PRODUCT_NAME]">
-                </div>
-                <div class="product-image">
-                    <img src="[IMAGE_2_URL]" alt="[PRODUCT_NAME]">
-                </div>
-                <div class="product-image">
-                    <img src="[IMAGE_3_URL]" alt="[PRODUCT_NAME]">
-                </div>
-                <div class="product-image">
-                    <img src="[IMAGE_4_URL]" alt="[PRODUCT_NAME]">
-                </div>
-                <!-- ADD MORE IMAGES AS NEEDED -->
-            </div>
+    <!-- Right (Product + Checkout) -->
+    <section class="split-right" aria-label="Product Showcase & Checkout">
+      <!-- Product Gallery -->
+      <div class="showcase" id="product">
+        <div class="gallery" aria-label="Product Images">
+          <img src="https://cdn.orderonline.id/uploads/images_7470321735137133587.png" alt="Night Forge - front view" loading="lazy">
+          <img src="https://cdn.orderonline.id/uploads/images_1073891735137133315.png" alt="Night Forge - back view" loading="lazy">
+          <img src="https://cdn.orderonline.id/uploads/images_9983551735137131504.png" alt="Night Forge - closeup" loading="lazy">
+          <img src="https://cdn.orderonline.id/uploads/images_2981291735137132861.png" alt="Night Forge - detail" loading="lazy">
+          <img src="https://cdn.orderonline.id/uploads/images_2151971735137133080.png" alt="Night Forge - sleeve" loading="lazy">
+          <img src="https://cdn.orderonline.id/uploads/images_4228991735138658026.gif" alt="Night Forge - demo video" loading="lazy">
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features fade-in">
-        <div class="container">
-            <h2>[FEATURES_HEADLINE]</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">[FEATURE_1_ICON]</div>
-                    <h3>[FEATURE_1_TITLE]</h3>
-                    <p>[FEATURE_1_DESCRIPTION]</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">[FEATURE_2_ICON]</div>
-                    <h3>[FEATURE_2_TITLE]</h3>
-                    <p>[FEATURE_2_DESCRIPTION]</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">[FEATURE_3_ICON]</div>
-                    <h3>[FEATURE_3_TITLE]</h3>
-                    <p>[FEATURE_3_DESCRIPTION]</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">[FEATURE_4_ICON]</div>
-                    <h3>[FEATURE_4_TITLE]</h3>
-                    <p>[FEATURE_4_DESCRIPTION]</p>
-                </div>
-            </div>
+        <div class="details">
+          <h2>Product Features</h2>
+          <ul>
+            <li>Premium black leather, modern minimalist design</li>
+            <li>Available in <b>BROWN</b> and <b>BLACK</b></li>
+            <li>Unisex sizing: S, M, L, XL, XXL</li>
+            <li>Free US shipping &amp; 7-day money-back guarantee</li>
+            <li>Easy PayPal Express Checkout</li>
+            <li>24/7 dedicated customer support</li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials fade-in">
-        <div class="container">
-            <div class="testimonial-header">
-                <h2>[TESTIMONIAL_HEADLINE]</h2>
-                <p>[TESTIMONIAL_SUBTITLE]</p>
-            </div>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p>"[TESTIMONIAL_1_TEXT]"</p>
-                    <strong>- [TESTIMONIAL_1_NAME], [TESTIMONIAL_1_TITLE]</strong>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p>"[TESTIMONIAL_2_TEXT]"</p>
-                    <strong>- [TESTIMONIAL_2_NAME], [TESTIMONIAL_2_TITLE]</strong>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p>"[TESTIMONIAL_3_TEXT]"</p>
-                    <strong>- [TESTIMONIAL_3_NAME], [TESTIMONIAL_3_TITLE]</strong>
-                </div>
-            </div>
+        <div>
+          <span class="variant-label">Color:</span>
+          <div class="variant-group" id="color-options" role="radiogroup" aria-label="Color options">
+            <button class="variant-btn" data-variant="color" data-value="BLACK" aria-checked="true" tabindex="0">BLACK</button>
+            <button class="variant-btn" data-variant="color" data-value="BROWN" tabindex="0">BROWN</button>
+          </div>
+          <span class="variant-label">Size:</span>
+          <div class="variant-group" id="size-options" role="radiogroup" aria-label="Size options">
+            <button class="variant-btn" data-variant="size" data-value="S" aria-checked="false" tabindex="0">S</button>
+            <button class="variant-btn" data-variant="size" data-value="M" aria-checked="false" tabindex="0">M</button>
+            <button class="variant-btn" data-variant="size" data-value="L" aria-checked="false" tabindex="0">L</button>
+            <button class="variant-btn" data-variant="size" data-value="XL" aria-checked="false" tabindex="0">XL</button>
+            <button class="variant-btn" data-variant="size" data-value="XXL" aria-checked="false" tabindex="0">XXL</button>
+          </div>
+          <label for="quantity" class="variant-label" style="margin-top:1rem;display:inline-block;">Quantity:</label>
+          <input type="number" id="quantity" min="1" max="10" value="1" style="width:68px;font-size:1rem;margin-left:0.7rem;vertical-align:middle;border-radius:var(--radius);border:1.2px solid #b3d5f3;padding:0.25rem 0.5rem;">
         </div>
-    </section>
-
-    <!-- Urgency Section -->
-    <section class="urgency">
-        <div class="container">
-            <h2>⚠️ STOK TINGGAL <span id="stock">[STOCK_COUNT]</span> UNIT!</h2>
-            <p>[URGENCY_TEXT]</p>
-            <div class="countdown" id="countdown">Promo berakhir dalam: 23:59:45</div>
-            <button class="cta-button" onclick="orderNow()">[URGENCY_CTA]</button>
+      </div>
+      <!-- Pricing & PayPal -->
+      <div class="pricing-box" id="buy-now">
+        <div class="price-row">
+          <span id="current-price">$68.00</span>
+          <span class="price-old">$109.99</span>
+          <span class="price-discount">37% OFF</span>
         </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="final-cta" id="order">
-        <div class="container">
-            <h2>[FINAL_HEADLINE]</h2>
-            
-            <div class="price-section">
-                <div class="price">
-                    <span class="old-price">[OLD_PRICE]</span><br>
-                    <span>[NEW_PRICE]</span>
-                </div>
-                
-                <div class="guarantee">
-                    [GUARANTEE_LIST]
-                </div>
-                
-                <button class="cta-button" onclick="orderNow()" style="font-size: 1.6rem; padding: 25px 60px;">
-                    [FINAL_CTA_TEXT]
-                </button>
-                
-                <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
-                    [DISCLAIMER_TEXT]
-                </p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="paypal-form" id="paypal-form" aria-label="PayPal Checkout">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="fadamxyz@gmail.com">
+          <input type="hidden" name="item_name" id="paypal-item-name" value="Night Forge">
+          <input type="hidden" name="amount" id="paypal-amount" value="68.00">
+          <input type="hidden" name="currency_code" value="USD">
+          <input type="hidden" name="quantity" id="paypal-quantity" value="1">
+          <input type="hidden" name="on0" value="Color">
+          <input type="hidden" name="os0" id="paypal-color" value="BLACK">
+          <input type="hidden" name="on1" value="Size">
+          <input type="hidden" name="os1" id="paypal-size" value="S">
+          <input type="hidden" name="return" value="https://nexco.com/thanks">
+          <input type="hidden" name="cancel_return" value="https://nexco.com/thanks">
+          <button type="submit" class="paypal-btn" aria-label="Buy Now with PayPal">
+            <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="" style="height:25px;vertical-align:middle;margin-right:8px;">
+            🛒 Buy Now with PayPal – <span id="btn-price">$68.00</span>
+          </button>
+        </form>
+        <div class="secure-pay"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#11c580" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+          Secure Payments &amp; 7-Day Money-Back Guarantee
+        </div>
+      </div>
+      <!-- Social Proof -->
+      <section class="testimonials" aria-label="Customer Testimonials">
+        <h2>What Customers Say</h2>
+        <div class="testimonial-list">
+          <div class="testimonial">
+            <div class="user">
+              <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Customer profile photo" loading="lazy">
+              <span class="name">James T.</span>
+              <span class="stars" aria-label="5/5 stars">★★★★★</span>
             </div>
+            <div>“The Night Forge looks and feels amazing. The fit is perfect and quality is top notch. Shipping was fast, PayPal checkout was super easy!”</div>
+          </div>
+          <div class="testimonial">
+            <div class="user">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer profile photo" loading="lazy">
+              <span class="name">Monica L.</span>
+              <span class="stars" aria-label="5/5 stars">★★★★★</span>
+            </div>
+            <div>“Stylish, minimalist, and just the right weight for all seasons. Huge fan of the brown color option. Thank you nexco!”</div>
+          </div>
+          <div class="testimonial">
+            <div class="user">
+              <img src="https://randomuser.me/api/portraits/men/8.jpg" alt="Customer profile photo" loading="lazy">
+              <span class="name">Alex S.</span>
+              <span class="stars" aria-label="5/5 stars">★★★★★</span>
+            </div>
+            <div>“Love the modern look and it really matches everything. Customer support answered my size questions instantly!”</div>
+          </div>
         </div>
+        <div class="trust-badge-row" aria-label="Shop with Confidence">
+          <img src="https://static.thenounproject.com/png/1941011-200.png" class="badge-img" alt="Secure Payment" loading="lazy">
+          <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" class="badge-img" alt="Money-back" loading="lazy">
+          <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" class="badge-img" alt="Fast Shipping" loading="lazy">
+        </div>
+      </section>
+      <!-- FAQ -->
+      <section class="faq" aria-label="Frequently Asked Questions">
+        <h2>FAQ</h2>
+        <div class="faq-item">
+          <div class="faq-q" tabindex="0" aria-expanded="false">Is the Night Forge jacket unisex?</div>
+          <div class="faq-a">Yes! Night Forge offers a modern, unisex fit suitable for both men and women ages 20-50.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" tabindex="0" aria-expanded="false">How fast is shipping?</div>
+          <div class="faq-a">We offer free US shipping via trusted carriers. Most orders arrive within 3–5 business days.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" tabindex="0" aria-expanded="false">Is PayPal checkout secure?</div>
+          <div class="faq-a">Absolutely. All payments are securely processed through PayPal, with buyer protection and encrypted checkout.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" tabindex="0" aria-expanded="false">How do I choose my size?</div>
+          <div class="faq-a">Please select your preferred size in the options above. Our sizing is true to standard US measurements.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" tabindex="0" aria-expanded="false">Is there a money-back guarantee?</div>
+          <div class="faq-a">Yes! If you’re not 100% satisfied, you can return your jacket within 7 days for a full refund.</div>
+        </div>
+      </section>
     </section>
+  </main>
 
-    <script>
-        // REPLACE WITH ACTUAL ORDER URL
-        function orderNow() {
-            window.location.href = '[ORDER_URL]';
+  <footer>
+    <div class="footer-links">
+      <a href="mailto:contact@nexco.com" aria-label="Contact nexco support">Contact</a> |
+      <a href="https://nexco.com/thanks" aria-label="Order tracking">Order Tracking</a> |
+      <a href="#" aria-label="Privacy policy">Privacy Policy</a> |
+      <a href="#" aria-label="Terms of service">Terms</a>
+    </div>
+    <div class="footer-legal">
+      &copy; 2025 nexco. All rights reserved. | Secure payments with
+      <img src="https://cdn.iconscout.com/icon/free/png-128/paypal-169.png" alt="PayPal" style="vertical-align: middle; height: 16px;">
+    </div>
+    <!-- Analytics Pixel/Conversion Tracking -->
+    <img src="https://nexco.com/analytics-pixel?event=landing_view" class="analytics-pixel" alt="Analytics Pixel">
+  </footer>
+  <script>
+    // --- Accessibility: FAQ accordion ---
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', function () {
+        const parent = this.parentNode;
+        parent.classList.toggle('open');
+        this.setAttribute('aria-expanded', parent.classList.contains('open'));
+      });
+      q.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
         }
-        
-        // Countdown timer
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            tomorrow.setHours(0, 0, 0, 0);
-            const distance = tomorrow.getTime() - now;
-            
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            document.getElementById('countdown').innerHTML = `Promo berakhir dalam: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-        
-        // Dynamic viewers count
-        function updateViewers() {
-            const viewers = document.getElementById('viewers');
-            const currentCount = parseInt(viewers.textContent);
-            const change = Math.floor(Math.random() * 5) - 2;
-            const newCount = Math.max(50, Math.min(100, currentCount + change));
-            viewers.textContent = newCount;
-        }
-        
-        // Dynamic stock count
-        function updateStock() {
-            const stock = document.getElementById('stock');
-            const currentStock = parseInt(stock.textContent);
-            if (currentStock > 10 && Math.random() < 0.3) {
-                stock.textContent = currentStock - 1;
-            }
-        }
-        
-        // Scroll animations
-        function handleScrollAnimations() {
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-        
-        // Initialize
-        setInterval(updateCountdown, 1000);
-        setInterval(updateViewers, 15000);
-        setInterval(updateStock, 45000);
-        
-        window.addEventListener('scroll', handleScrollAnimations);
-        
-        updateCountdown();
-        handleScrollAnimations();
-    </script>
+      });
+    });
+
+    // --- Product Variant Selection ---
+    let selectedColor = 'BLACK';
+    let selectedSize = 'S';
+    let quantity = 1;
+
+    function updateVariantBtns() {
+      document.querySelectorAll('.variant-btn[data-variant="color"]').forEach(btn => {
+        btn.classList.toggle('selected', btn.dataset.value === selectedColor);
+        btn.setAttribute('aria-checked', btn.dataset.value === selectedColor);
+      });
+      document.querySelectorAll('.variant-btn[data-variant="size"]').forEach(btn => {
+        btn.classList.toggle('selected', btn.dataset.value === selectedSize);
+        btn.setAttribute('aria-checked', btn.dataset.value === selectedSize);
+      });
+    }
+    function updatePayPalForm() {
+      document.getElementById('paypal-color').value = selectedColor;
+      document.getElementById('paypal-size').value = selectedSize;
+      document.getElementById('paypal-quantity').value = quantity;
+      // Price is static, but could be dynamic for variants
+    }
+    function updatePriceDisplay() {
+      const price = 68.00 * quantity;
+      document.getElementById('current-price').textContent = `$${price.toFixed(2)}`;
+      document.getElementById('btn-price').textContent = `$${price.toFixed(2)}`;
+      document.getElementById('paypal-amount').value = (68.00 * quantity).toFixed(2);
+    }
+    // Handle color selection
+    document.querySelectorAll('.variant-btn[data-variant="color"]').forEach(btn => {
+      btn.addEventListener('click', function () {
+        selectedColor = this.dataset.value;
+        updateVariantBtns();
+        updatePayPalForm();
+      });
+    });
+    // Handle size selection
+    document.querySelectorAll('.variant-btn[data-variant="size"]').forEach(btn => {
+      btn.addEventListener('click', function () {
+        selectedSize = this.dataset.value;
+        updateVariantBtns();
+        updatePayPalForm();
+      });
+    });
+    // Quantity change
+    document.getElementById('quantity').addEventListener('input', function () {
+      quantity = Math.max(1, Math.min(10, parseInt(this.value) || 1));
+      this.value = quantity;
+      updatePayPalForm();
+      updatePriceDisplay();
+    });
+
+    // Scroll to buy now
+    document.querySelectorAll('.cta-main').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('buy-now').scrollIntoView({behavior: "smooth"});
+      });
+    });
+
+    // Mobile: Default selection
+    updateVariantBtns();
+    updatePayPalForm();
+    updatePriceDisplay();
+
+    // Basic analytics event (for demonstration)
+    document.getElementById('paypal-form').addEventListener('submit', function() {
+      var img = document.createElement('img');
+      img.src = 'https://nexco.com/analytics-pixel?event=paypal_checkout';
+      img.alt = 'Analytics';
+      img.className = 'analytics-pixel';
+      document.body.appendChild(img);
+    });
+  </script>
 </body>
 </html>
