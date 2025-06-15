@@ -1,657 +1,685 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Night Forge – A sleek black leather jacket by Nexco. Shop now with PayPal. Free shipping. Trusted e-commerce.">
-  <meta name="keywords" content="Night Forge, Leather Jacket, Nexco, Fashion, PayPal, Free Shipping">
-  <meta name="author" content="nexco">
-  <title>Night Forge – Modern Black Leather Jacket | nexco</title>
-  <link rel="icon" href="https://cdn.orderonline.id/uploads/images_4147541749587339195.png" type="image/png">
-  <style>
-    :root {
-      --primary: #1e3a8a;
-      --accent: #2563eb;
-      --white: #fff;
-      --black: #222;
-      --bg: #f5f7fb;
-      --gray: #d1d5db;
-      --success: #22c55e;
-      --danger: #ef4444;
-    }
-    * { box-sizing: border-box; }
-    html { font-size: 16px; }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', 'Arial', sans-serif;
-      background: var(--bg);
-      color: var(--black);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    a { color: var(--accent); text-decoration: none; }
-    header, main, footer { width: 100%; }
-
-    /* Split screen layout */
-    .split {
-      display: flex;
-      flex-direction: row;
-      min-height: 100vh;
-      background: var(--white);
-    }
-    .split-img, .split-content {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-    .split-img {
-      background: linear-gradient(120deg, var(--primary) 0%, var(--accent) 100%);
-      color: var(--white);
-      flex-direction: column;
-      justify-content: flex-start;
-      min-width: 360px;
-    }
-    .brand-logo {
-      width: 80px;
-      margin-bottom: 2rem;
-      margin-top: 1rem;
-    }
-    .hero-img {
-      width: 90%;
-      max-width: 340px;
-      border-radius: 1rem;
-      box-shadow: 0 6px 32px 0 rgba(0,0,0,0.12);
-      margin: 1rem 0;
-      background: #000;
-    }
-    .hero-gif {
-      width: 70%;
-      max-width: 240px;
-      border-radius: 12px;
-      margin: 1rem 0 0 0;
-      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.15);
-    }
-    .gallery-thumbs {
-      display: flex;
-      gap: 8px;
-      margin-top: 1.5rem;
-    }
-    .gallery-thumb {
-      width: 54px;
-      height: 54px;
-      border-radius: 8px;
-      object-fit: cover;
-      background: #111;
-      cursor: pointer;
-      outline: 2px solid transparent;
-      transition: outline 0.2s;
-    }
-    .gallery-thumb.active,
-    .gallery-thumb:focus {
-      outline: 2px solid var(--accent);
-    }
-
-    /* HERO + FORM */
-    .split-content {
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      max-width: 520px;
-      margin: auto;
-    }
-    .headline {
-      font-size: 2.25rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.5px;
-    }
-    .subheadline {
-      font-size: 1.15rem;
-      color: #444;
-      margin-bottom: 1.25rem;
-    }
-    .price-row {
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-      margin: 0.5rem 0 1.5rem 0;
-    }
-    .price {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-    .old-price {
-      font-size: 1.1rem;
-      text-decoration: line-through;
-      color: var(--gray);
-    }
-    .discount {
-      font-size: 1rem;
-      color: var(--success);
-      font-weight: 600;
-      margin-left: .5rem;
-    }
-    .shipping-badge {
-      display: inline-block;
-      background: var(--success);
-      color: #fff;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      padding: 0.15em 0.65em;
-      margin-left: 0.75rem;
-      vertical-align: middle;
-    }
-    .variant-row {
-      margin: 1rem 0 0.5rem 0;
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .variant-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-    .variant-label {
-      font-size: 1rem;
-      font-weight: 500;
-      color: #333;
-      margin-bottom: 0.1rem;
-    }
-    .variant-select, .quantity-select {
-      padding: 0.5em 1em;
-      border-radius: 6px;
-      border: 1.5px solid var(--gray);
-      font-size: 1rem;
-      background: #fafbfc;
-      margin-right: 0.5em;
-      min-width: 80px;
-      appearance: none;
-    }
-    .quantity-row {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin: 0.5rem 0 1.5rem 0;
-    }
-    .paypal-btn, .express-btn {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      font-size: 1.15rem;
-      font-weight: 600;
-      border-radius: 8px;
-      padding: 0.85em 2.5em;
-      cursor: pointer;
-      margin: 0.5rem 0;
-      box-shadow: 0 2px 12px 0 rgba(37,99,235,0.09);
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
-      transition: background 0.2s;
-    }
-    .paypal-btn:hover, .express-btn:hover {
-      background: #1744a5;
-    }
-    .express-btn {
-      background: #ffc439;
-      color: #222;
-      border: 1.5px solid #fff;
-      margin-left: .5rem;
-    }
-    .ctas-row {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-    .secure-badge {
-      display: flex;
-      align-items: center;
-      gap: 0.7em;
-      font-size: 0.98rem;
-      color: #222;
-      background: #e8f3ff;
-      border-radius: 6px;
-      padding: 0.35em 1em;
-      margin: 0.5rem 0 1.5rem 0;
-      font-weight: 500;
-      border: 1px solid #dbeafe;
-    }
-    .secure-badge img {
-      width: 26px;
-      vertical-align: middle;
-    }
-    /* Social Proof & Details */
-    .section {
-      width: 100%;
-      max-width: 900px;
-      margin: 2.5rem auto 0 auto;
-      background: var(--white);
-      border-radius: 1.1rem;
-      box-shadow: 0 2px 16px 0 rgba(30,58,138,0.06);
-      padding: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 1.1rem;
-    }
-    .features-list, .spec-list, .faq-list, .reviews-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-    .features-list li, .spec-list li, .faq-list li, .reviews-list li {
-      font-size: 1.1rem;
-      color: #333;
-      background: #f7fafb;
-      border-radius: 7px;
-      padding: 0.6em 1.1em;
-    }
-    .trust-row {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin: 1rem 0;
-      flex-wrap: wrap;
-    }
-    .trust-badge {
-      height: 38px;
-      background: #fff;
-      border-radius: 7px;
-      border: 1.5px solid #e5e7eb;
-      box-shadow: 0 1px 6px 0 rgba(0,0,0,0.06);
-      padding: 0.3em 1em;
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
-      font-size: 1rem;
-      font-weight: 500;
-      color: #222;
-    }
-    .trust-badge img { height: 24px; }
-    .moneyback {
-      color: var(--success);
-      font-weight: 600;
-      margin-left: 0.5em;
-    }
-    /* Reviews */
-    .reviews-list {
-      gap: 1.4rem;
-    }
-    .review {
-      background: #f1f5f9;
-      padding: 1.1em 1.3em;
-      border-radius: 9px;
-      font-size: 1rem;
-      color: #1e293b;
-      box-shadow: 0 1px 8px 0 rgba(30,58,138,0.04);
-      display: flex;
-      flex-direction: column;
-      gap: 0.5em;
-    }
-    .reviewer {
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 1.04em;
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
-    }
-    .review-rating {
-      color: #f59e42;
-    }
-    /* FAQ */
-    .faq-list li {
-      background: #f7f9fa;
-      border-left: 4px solid var(--accent);
-      padding: 0.8em 1.2em;
-      font-size: 1.04rem;
-    }
-    /* Footer */
-    footer {
-      width: 100%;
-      background: var(--primary);
-      color: #f8fafc;
-      text-align: center;
-      font-size: 1rem;
-      padding: 2.5rem 1rem 1.3rem 1rem;
-      margin-top: 2.5rem;
-      border-radius: 1.5em 1.5em 0 0;
-      box-shadow: 0 -1px 10px 0 rgba(30,58,138,0.08);
-    }
-    .footer-links {
-      margin: 1em 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5em;
-    }
-    .footer-link {
-      color: #e0e7ef;
-      font-weight: 500;
-      text-decoration: underline;
-      transition: color 0.2s;
-    }
-    .footer-link:hover { color: #fff; }
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8em;
-      margin-bottom: 1.2em;
-    }
-    .footer-logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #fff;
-    }
-    /* Responsive Styles */
-    @media (max-width: 1024px) {
-      .split {
-        flex-direction: column-reverse;
-        min-height: unset;
-      }
-      .split-img, .split-content {
-        min-width: unset;
-        max-width: 100%;
-        padding: 1.5rem;
-      }
-    }
-    @media (max-width: 700px) {
-      .split-content, .section {
-        padding: 1.1rem !important;
-      }
-      .section {
-        margin: 2rem 0.5rem 0 0.5rem;
-      }
-      .hero-img { max-width: 95vw; }
-    }
-    @media (max-width: 420px) {
-      html { font-size: 14px; }
-      .headline { font-size: 1.35rem; }
-      .split-img, .split-content { padding: 0.7rem; }
-    }
-    /* Accessibility */
-    .sr-only {
-      position: absolute;
-      width: 1px; height: 1px;
-      padding: 0; margin: -1px;
-      overflow: hidden; clip: rect(0,0,0,0);
-      border: 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Night Forge Leather Jacket | Nexco</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1e40af',
+                        'secondary': '#0f172a',
+                        'accent': '#b45309'
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        .product-slider {
+            height: 500px;
+        }
+        .product-slider img {
+            height: 100%;
+            object-fit: cover;
+        }
+        .swiper-pagination-bullet {
+            background: white;
+            opacity: 0.6;
+        }
+        .swiper-pagination-bullet-active {
+            background: #1e40af;
+            opacity: 1;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: white;
+            background: rgba(0,0,0,0.3);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background: rgba(0,0,0,0.5);
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 1.2rem;
+        }
+        @media (max-width: 768px) {
+            .product-slider {
+                height: 350px;
+            }
+        }
+        .hero-pattern {
+            background: radial-gradient(circle, rgba(30,64,175,0.05) 0%, rgba(255,255,255,1) 80%);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+        .paypal-btn {
+            transition: all 0.3s ease;
+        }
+        .paypal-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        }
+        .variant-selector:checked + label {
+            border: 2px solid #1e40af;
+            background-color: #eff6ff;
+        }
+        .size-selector:checked + label {
+            background-color: #1e40af;
+            color: white;
+        }
+        .animated {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: scale(1.02);
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <nav class="sr-only" aria-label="Main navigation">
-      <a href="#product">Product</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-  <div class="split" id="top">
-    <!-- Images/Brand Side -->
-    <div class="split-img" aria-label="Product gallery">
-      <img src="https://cdn.orderonline.id/uploads/images_4147541749587339195.png" alt="nexco brand logo" class="brand-logo" loading="lazy">
-      <img src="https://cdn.orderonline.id/uploads/images_7470321735137133587.png" alt="Night Forge black leather jacket main image" class="hero-img" id="mainImage" loading="eager">
-      <img src="https://cdn.orderonline.id/uploads/images_4228991735138658026.gif" alt="Night Forge demo video" class="hero-gif" loading="lazy">
-      <div class="gallery-thumbs" role="group" aria-label="Product gallery thumbnails">
-        <img src="https://cdn.orderonline.id/uploads/images_7470321735137133587.png" class="gallery-thumb active" alt="Night Forge preview 1" tabindex="0" onclick="switchImage(0)" onkeydown="if(event.key==='Enter'){switchImage(0)}">
-        <img src="https://cdn.orderonline.id/uploads/images_1073891735137133315.png" class="gallery-thumb" alt="Night Forge preview 2" tabindex="0" onclick="switchImage(1)" onkeydown="if(event.key==='Enter'){switchImage(1)}">
-        <img src="https://cdn.orderonline.id/uploads/images_9983551735137131504.png" class="gallery-thumb" alt="Night Forge preview 3" tabindex="0" onclick="switchImage(2)" onkeydown="if(event.key==='Enter'){switchImage(2)}">
-        <img src="https://cdn.orderonline.id/uploads/images_2981291735137132861.png" class="gallery-thumb" alt="Night Forge preview 4" tabindex="0" onclick="switchImage(3)" onkeydown="if(event.key==='Enter'){switchImage(3)}">
-        <img src="https://cdn.orderonline.id/uploads/images_2151971735137133080.png" class="gallery-thumb" alt="Night Forge preview 5" tabindex="0" onclick="switchImage(4)" onkeydown="if(event.key==='Enter'){switchImage(4)}">
-      </div>
-    </div>
-    <!-- Main Content Side -->
-    <main class="split-content" id="product">
-      <h1 class="headline">Night Forge: Black Leather Jacket</h1>
-      <div class="subheadline">
-        Elevate your everyday style with a bold, timeless look — crafted for modern lifestyles.<br>
-        <span style="color:#444;">Unisex | Free Shipping | Trusted PayPal Checkout</span>
-      </div>
-      <div class="price-row" aria-label="Price and discount">
-        <span class="price" id="priceDisplay">$68.00</span>
-        <span class="old-price">$109.00</span>
-        <span class="discount">(37% OFF)</span>
-        <span class="shipping-badge">Free Shipping</span>
-      </div>
-      <form id="purchaseForm" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="paypal-form" aria-label="Buy Night Forge Jacket">
-        <input type="hidden" name="cmd" value="_xclick">
-        <input type="hidden" name="business" value="fadamxyz@gmail.com">
-        <input type="hidden" name="item_name" value="Night Forge">
-        <input type="hidden" name="currency_code" value="USD">
-        <input type="hidden" name="return" value="https://nexco.com/thanks">
-        <input type="hidden" name="cancel_return" value="https://nexco.com/thanks">
-        <input type="hidden" name="amount" value="68.00" id="paypalAmountInput">
-        <div class="variant-row" aria-label="Select product options">
-          <div class="variant-group">
-            <label for="color" class="variant-label">Color</label>
-            <select name="on0" id="color" class="variant-select" required aria-required="true">
-              <option value="Black">Black</option>
-              <option value="Brown">Brown</option>
-            </select>
-          </div>
-          <div class="variant-group">
-            <label for="size" class="variant-label">Size</label>
-            <select name="os0" id="size" class="variant-select" required aria-required="true">
-              <option value="S">S</option>
-              <option value="M">M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-              <option value="XXL">XXL</option>
-            </select>
-          </div>
+<body class="smooth-scroll bg-gray-50 font-sans text-secondary">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://cdn.orderonline.id/uploads/images_4147541749587339195.png" alt="Nexco Logo" class="h-10 mr-3">
+                <span class="text-xl font-bold text-primary">NEXCO</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#features" class="text-gray-700 hover:text-primary font-medium">Features</a>
+                <a href="#gallery" class="text-gray-700 hover:text-primary font-medium">Gallery</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-primary font-medium">Reviews</a>
+                <a href="#faq" class="text-gray-700 hover:text-primary font-medium">FAQs</a>
+            </nav>
+            <div class="flex items-center">
+                <button id="cart-icon" class="relative text-gray-700 hover:text-primary mr-4">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </button>
+                <button class="md:hidden text-gray-700" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
         </div>
-        <div class="quantity-row" aria-label="Select quantity">
-          <label for="quantity" style="margin-right:0.4em;">Qty</label>
-          <select id="quantity" name="quantity" class="quantity-select" aria-label="Quantity" onchange="updatePrice()" style="min-width:54px;">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="flex flex-col py-4 px-4 space-y-3">
+                <a href="#features" class="text-gray-700 hover:text-primary font-medium py-2">Features</a>
+                <a href="#gallery" class="text-gray-700 hover:text-primary font-medium py-2">Gallery</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-primary font-medium py-2">Reviews</a>
+                <a href="#faq" class="text-gray-700 hover:text-primary font-medium py-2">FAQs</a>
+                <button class="bg-primary text-white py-2 px-4 rounded-lg font-medium">Shop Now</button>
+            </div>
         </div>
-        <div class="ctas-row">
-          <button type="submit" class="paypal-btn" aria-label="Buy now with PayPal">
-            <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal logo" style="height:1.3em;vertical-align:middle;">
-            Buy Now with PayPal – <span id="ctaPrice">$68.00</span>
-          </button>
-          <button type="button" class="express-btn" aria-label="Express checkout with PayPal" onclick="paypalExpressCheckout()">
-            <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="" style="height:1.1em;vertical-align:middle;"> Express Checkout
-          </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-pattern py-12 md:py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <div class="swiper product-slider rounded-lg shadow-xl overflow-hidden">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="https://cdn.orderonline.id/uploads/images_7470321735137133587.png" 
+                                     alt="Night Forge Leather Jacket" 
+                                     class="w-full h-auto">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://cdn.orderonline.id/uploads/images_1073891735137133315.png" 
+                                     alt="Night Forge Leather Jacket" 
+                                     class="w-full h-auto">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://cdn.orderonline.id/uploads/images_9983551735137131504.png" 
+                                     alt="Night Forge Leather Jacket" 
+                                     class="w-full h-auto">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://cdn.orderonline.id/uploads/images_2981291735137132861.png" 
+                                     alt="Night Forge Leather Jacket" 
+                                     class="w-full h-auto">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://cdn.orderonline.id/uploads/images_2151971735137133080.png" 
+                                     alt="Night Forge Leather Jacket" 
+                                     class="w-full h-auto">
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <h1 class="text-4xl md:text-5xl font-serif font-bold mb-4">
+                        Night Forge <br>
+                        <span class="text-primary">Leather Jacket</span>
+                    </h1>
+                    <p class="text-gray-600 text-lg mb-6">
+                        A sleek and modern black leather jacket that elevates your everyday look — bold, clean, and timeless.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl font-bold text-primary">$68.00</span>
+                            <span class="ml-4 text-gray-500 line-through">$42.99</span>
+                            <span class="ml-4 bg-red-100 text-red-800 px-2 py-1 rounded font-bold">37% OFF</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-truck text-green-500 mr-2"></i>
+                            <span>Free Shipping Worldwide</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="font-medium mb-2">Colors:</h3>
+                        <div class="flex space-x-3">
+                            <div class="variant-item">
+                                <input type="radio" name="color" id="color-black" class="hidden variant-selector" checked>
+                                <label for="color-black" class="block w-10 h-10 bg-black rounded-full border-2 border-gray-200 cursor-pointer"></label>
+                                <span class="text-xs text-center block mt-1">Classic Black</span>
+                            </div>
+                            <div class="variant-item">
+                                <input type="radio" name="color" id="color-brown" class="hidden variant-selector">
+                                <label for="color-brown" class="block w-10 h-10 bg-amber-900 rounded-full border-2 border-gray-200 cursor-pointer"></label>
+                                <span class="text-xs text-center block mt-1">Vintage Brown</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="font-medium mb-2">Size:</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <div>
+                                <input type="radio" name="size" id="size-s" class="hidden size-selector">
+                                <label for="size-s" class="inline-block w-12 h-12 rounded-lg border border-gray-300 flex items-center justify-center cursor-pointer">S</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="size" id="size-m" class="hidden size-selector" checked>
+                                <label for="size-m" class="inline-block w-12 h-12 rounded-lg border border-gray-300 flex items-center justify-center cursor-pointer">M</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="size" id="size-l" class="hidden size-selector">
+                                <label for="size-l" class="inline-block w-12 h-12 rounded-lg border border-gray-300 flex items-center justify-center cursor-pointer">L</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="size" id="size-xl" class="hidden size-selector">
+                                <label for="size-xl" class="inline-block w-12 h-12 rounded-lg border border-gray-300 flex items-center justify-center cursor-pointer">XL</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="size" id="size-xxl" class="hidden size-selector">
+                                <label for="size-xxl" class="inline-block w-12 h-12 rounded-lg border border-gray-300 flex items-center justify-center cursor-pointer">XXL</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center">
+                            <span class="mr-4 font-medium">Quantity:</span>
+                            <div class="flex items-center border rounded-lg">
+                                <button id="decrement-qty" class="px-4 py-2 text-gray-600 hover:text-primary">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span id="quantity-display" class="px-4 py-2 font-medium">1</span>
+                                <button id="increment-qty" class="px-4 py-2 text-gray-600 hover:text-primary">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold mb-2">Total: <span id="total-price" class="text-primary">$68.00</span></h3>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="paypal-form">
+                            <input type="hidden" name="cmd" value="_xclick">
+                            <input type="hidden" name="business" value="fadamxyz@gmail.com">
+                            <input type="hidden" name="item_name" value="Night Forge">
+                            <input type="hidden" name="amount" id="paypal-amount" value="68.00">
+                            <input type="hidden" name="currency_code" value="USD">
+                            <input type="hidden" name="return" value="https://nexco.com/thanks">
+                            <input type="hidden" name="cancel_return" value="https://nexco.com/thanks">
+                            <button type="submit" class="paypal-btn w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 px-6 rounded-lg flex items-center justify-center">
+                                <i class="fab fa-paypal text-xl mr-3"></i>
+                                BUY NOW - $68.00
+                            </button>
+                        </form>
+                        <div class="mt-4 flex items-center text-gray-600">
+                            <i class="fas fa-lock text-gray-500 mr-2"></i>
+                            <span>Secure Payment · 30-Day Money Back Guarantee</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-3">
+                        <div class="flex items-center bg-gray-100 rounded-lg px-3 py-2">
+                            <i class="fas fa-shipping-fast text-green-500 mr-2"></i>
+                            <span>Free Worldwide Shipping</span>
+                        </div>
+                        <div class="flex items-center bg-gray-100 rounded-lg px-3 py-2">
+                            <i class="fas fa-undo-alt text-green-500 mr-2"></i>
+                            <span>Easy Returns</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="secure-badge" aria-label="Security and trust badges">
-          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Secure payment icon">
-          100% Secure Payment & Buyer Protection
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Why Choose Night Forge?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Crafted for perfection, designed for everyday elegance and durability</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-6 rounded-xl shadow-lg transition-all">
+                    <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                        <i class="fas fa-cut text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Premium Quality</h3>
+                    <p class="text-gray-600">Made with genuine leather for superior durability and a luxurious feel that lasts for years.</p>
+                </div>
+                
+                <div class="feature-card bg-white p-6 rounded-xl shadow-lg transition-all">
+                    <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                        <i class="fas fa-tshirt text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Modern Design</h3>
+                    <p class="text-gray-600">Sleek, minimalist design with clean lines that complements any outfit and occasion.</p>
+                </div>
+                
+                <div class="feature-card bg-white p-6 rounded-xl shadow-lg transition-all">
+                    <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                        <i class="fas fa-wind text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">All-Weather Comfort</h3>
+                    <p class="text-gray-600">Thermo-regulating design provides warmth in winter and breathability for milder seasons.</p>
+                </div>
+            </div>
         </div>
-      </form>
-      <div class="trust-row">
-        <div class="trust-badge" aria-label="Money-back guarantee">
-          <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Money-back guarantee badge" loading="lazy">
-          30-Day Money-Back <span class="moneyback">Guarantee</span>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Style Inspiration</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">See how our customers are styling their Night Forge jacket</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://cdn.orderonline.id/uploads/images_1073891735137133315.png" alt="Jacket Style 1" class="w-full h-80 object-cover">
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://cdn.orderonline.id/uploads/images_9983551735137131504.png" alt="Jacket Style 2" class="w-full h-80 object-cover">
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://cdn.orderonline.id/uploads/images_2981291735137132861.png" alt="Jacket Style 3" class="w-full h-80 object-cover">
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <img src="https://cdn.orderonline.id/uploads/images_4228991735138658026.gif" alt="Jacket GIF" class="max-w-2xl mx-auto rounded-lg shadow-lg">
+            </div>
         </div>
-        <div class="trust-badge" aria-label="Fast delivery">
-          <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" alt="Fast delivery icon" loading="lazy">
-          Fast US Shipping
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Customer Reviews</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Hear what our customers have to say about the Night Forge jacket</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-white p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-gray-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Michael R.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"This jacket has become my daily wear. The quality is exceptional and it fits perfectly. The leather has softened beautifully over time."</p>
+                </div>
+                
+                <div class="testimonial-card bg-white p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-gray-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sarah K.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"I've received so many compliments since I started wearing this jacket. It's versatile enough for both casual and semi-formal occasions."</p>
+                </div>
+                
+                <div class="testimonial-card bg-white p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-gray-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">James T.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The craftsmanship is impressive. After 6 months of regular use, it still looks brand new. Worth every penny at this price point."</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-primary rounded-xl p-8 text-white">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 mb-6 md:mb-0">
+                        <h3 class="text-2xl font-bold mb-2">Satisfaction Guaranteed</h3>
+                        <p>We stand behind the quality of our products with a 30-day money-back guarantee. If you're not completely satisfied, return it for a full refund.</p>
+                    </div>
+                    <div class="md:w-1/3 text-center">
+                        <div class="inline-flex items-center bg-white text-primary py-3 px-6 rounded-lg font-bold">
+                            <i class="fas fa-shield-alt text-xl mr-2"></i>
+                            <span>30-Day Guarantee</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="trust-badge" aria-label="Trusted payments">
-          <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png" alt="Trusted payment icon" loading="lazy">
-          Trusted PayPal Checkout
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Frequently Asked Questions</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Everything you need to know about the Night Forge jacket</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="mb-4 border border-gray-200 rounded-lg">
+                    <button class="faq-question w-full text-left p-6 font-medium flex justify-between items-center">
+                        <span>What materials are used in this jacket?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0">
+                        <p class="text-gray-600">The Night Forge jacket is crafted from premium genuine leather with a soft cotton lining for comfort. The zippers and hardware are made from high-quality metal for durability.</p>
+                    </div>
+                </div>
+                
+                <div class="mb-4 border border-gray-200 rounded-lg">
+                    <button class="faq-question w-full text-left p-6 font-medium flex justify-between items-center">
+                        <span>How do I choose the right size?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0">
+                        <p class="text-gray-600">Our jackets are true to size. If you're between sizes, we recommend sizing up for a more comfortable fit, especially if you plan to layer clothing underneath.</p>
+                    </div>
+                </div>
+                
+                <div class="mb-4 border border-gray-200 rounded-lg">
+                    <button class="faq-question w-full text-left p-6 font-medium flex justify-between items-center">
+                        <span>How do I care for my leather jacket?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0">
+                        <p class="text-gray-600">Clean with a damp cloth and mild soap when necessary. Avoid machine washing. To maintain the leather's quality, apply leather conditioner every 3-6 months depending on use.</p>
+                    </div>
+                </div>
+                
+                <div class="mb-4 border border-gray-200 rounded-lg">
+                    <button class="faq-question w-full text-left p-6 font-medium flex justify-between items-center">
+                        <span>What is your return policy?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0">
+                        <p class="text-gray-600">We offer a 30-day money-back guarantee. If you're not completely satisfied with your purchase, you can return it for a full refund. Item must be in unworn condition with all tags attached.</p>
+                    </div>
+                </div>
+                
+                <div class="mb-4 border border-gray-200 rounded-lg">
+                    <button class="faq-question w-full text-left p-6 font-medium flex justify-between items-center">
+                        <span>How long does shipping take?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0">
+                        <p class="text-gray-600">We offer free worldwide shipping with an average delivery time of 5-7 business days for US orders and 7-14 days for international orders. You'll receive a tracking number once your order ships.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </main>
-  </div>
-  <!-- Product Details Section -->
-  <section class="section" aria-label="Product Features and Specifications">
-    <h2 class="section-title">Why You'll Love Night Forge</h2>
-    <ul class="features-list">
-      <li>Classic, minimalist design for every occasion</li>
-      <li>Premium black leather — soft, durable, and weather-resistant</li>
-      <li>Precision stitching and premium hardware</li>
-      <li>Tailored fit for all body types (unisex, S–XXL)</li>
-      <li>Easy care, built to last</li>
-    </ul>
-    <h3 style="margin-top:1.5rem;color:#2563eb;font-size:1.18rem;">Specifications</h3>
-    <ul class="spec-list">
-      <li>Material: 100% Genuine Leather</li>
-      <li>Lining: Soft polyester</li>
-      <li>Colors: Black, Brown</li>
-      <li>Sizes: S, M, L, XL, XXL</li>
-      <li>Category: Fashion</li>
-      <li>Designed for: Unisex (Ages 20–50)</li>
-      <li>Shipping: Free, within 2–5 business days (US)</li>
-    </ul>
-  </section>
-  <!-- Social Proof Section -->
-  <section class="section" id="reviews" aria-label="Customer testimonials and reviews">
-    <h2 class="section-title">What Our Customers Say</h2>
-    <ul class="reviews-list">
-      <li class="review">
-        <div class="reviewer"><span class="review-rating">★★★★★</span> Jordan M. (NY)</div>
-        <div>“Absolutely love the fit and quality! Looks amazing and feels premium. Will buy again.”</div>
-      </li>
-      <li class="review">
-        <div class="reviewer"><span class="review-rating">★★★★☆</span> Taylor B. (CA)</div>
-        <div>“Super stylish, exceeded my expectations. Fast delivery and great support. Highly recommend.”</div>
-      </li>
-      <li class="review">
-        <div class="reviewer"><span class="review-rating">★★★★★</span> Casey R. (TX)</div>
-        <div>“Got compliments the first day I wore it. The PayPal checkout was smooth and secure!”</div>
-      </li>
-    </ul>
-    <div class="trust-row">
-      <div class="trust-badge" aria-label="Site security">
-        <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="SSL badge" loading="lazy">
-        SSL Secured Checkout
-      </div>
-      <div class="trust-badge" aria-label="Verified customer reviews">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Verified reviews badge" loading="lazy">
-        Verified Reviews
-      </div>
-      <div class="trust-badge" aria-label="US shipping">
-        <img src="https://cdn-icons-png.flaticon.com/512/2166/2166823.png" alt="US shipping badge" loading="lazy">
-        US-based Shipping
-      </div>
-    </div>
-  </section>
-  <!-- Pricing & Payment Section -->
-  <section class="section" style="background:#f7fafc;" aria-label="Pricing and PayPal payment">
-    <h2 class="section-title">Ready to Order?</h2>
-    <div style="display:flex;flex-direction:column;gap:1.2rem;">
-      <div style="font-size:1.25rem;color:#222;font-weight:500;">
-        Night Forge Black Leather Jacket <span style="color:var(--accent);font-size:1.35rem;font-weight:700;">$68.00</span> <span class="old-price">$109.00</span> <span class="discount">(37% OFF)</span>
-      </div>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="paypal-form" style="margin-top:0;">
-        <input type="hidden" name="cmd" value="_xclick">
-        <input type="hidden" name="business" value="fadamxyz@gmail.com">
-        <input type="hidden" name="item_name" value="Night Forge">
-        <input type="hidden" name="amount" value="68.00">
-        <input type="hidden" name="currency_code" value="USD">
-        <input type="hidden" name="return" value="https://nexco.com/thanks">
-        <input type="hidden" name="cancel_return" value="https://nexco.com/thanks">
-        <button type="submit" class="paypal-btn" style="margin-top:0.4em;">
-          <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" style="height:1.3em;vertical-align:middle;">
-          Buy Now with PayPal – $68.00
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="https://cdn.orderonline.id/uploads/images_4147541749587339195.png" alt="Nexco Logo" class="h-10 mr-3">
+                        <span class="text-xl font-bold text-white">NEXCO</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">Curated quality for everyday life. Fast delivery, trusted payments, and exceptional service.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Shop</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Men's Collection</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Women's Collection</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">New Arrivals</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Best Sellers</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Special Offers</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Information</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Shipping Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Return Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Newsletter</h4>
+                    <p class="text-gray-300 mb-4">Subscribe to get special offers and styling tips</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email address" class="bg-gray-700 text-white py-2 px-4 rounded-l-lg w-full">
+                        <button class="bg-primary text-white py-2 px-4 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>© 2023 Nexco. All rights reserved. Payment methods accepted: <i class="fab fa-cc-visa mx-1"></i><i class="fab fa-cc-mastercard mx-1"></i><i class="fab fa-cc-paypal mx-1"></i><i class="fab fa-cc-amex mx-1"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating CTA -->
+    <div class="fixed bottom-4 right-4 z-50 md:hidden">
+        <button class="w-16 h-16 rounded-full bg-primary text-white shadow-lg flex items-center justify-center">
+            <i class="fas fa-shopping-bag text-xl"></i>
+            <span class="absolute -top-1 -right-1 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">1</span>
         </button>
-      </form>
-      <div style="font-size:1.01rem;color:#2563eb;margin-top:0.8em;">
-        <strong>Safe, fast PayPal checkout.</strong> No account needed.
-      </div>
     </div>
-  </section>
-  <!-- FAQ Section -->
-  <section class="section" aria-label="Frequently asked questions" id="faq">
-    <h2 class="section-title">Frequently Asked Questions</h2>
-    <ul class="faq-list">
-      <li><strong>What sizes are available?</strong><br> We offer S, M, L, XL, and XXL. See above for fit details.</li>
-      <li><strong>How fast is shipping?</strong><br> Free US shipping in 2–5 business days. Tracking provided.</li>
-      <li><strong>Is this jacket unisex?</strong><br> Yes, Night Forge is tailored for all genders and body types.</li>
-      <li><strong>Is my payment secure?</strong><br> Yes! All payments are processed via PayPal’s secure platform.</li>
-      <li><strong>What’s the return policy?</strong><br> 30-day money-back guarantee. If you’re not satisfied, contact our support for a hassle-free return.</li>
-      <li><strong>How do I choose my size?</strong><br> Use your regular US jacket size. If in doubt, size up for a relaxed fit.</li>
-      <li><strong>Can I order more than one?</strong><br> Yes, use the quantity selector above.</li>
-    </ul>
-  </section>
-  <!-- Footer -->
-  <footer id="contact" aria-label="Footer and contact information">
-    <div class="footer-brand">
-      <img src="https://cdn.orderonline.id/uploads/images_4147541749587339195.png" alt="nexco logo" class="footer-logo" loading="lazy">
-      <span style="font-weight:700;font-size:1.1em;">nexco</span>
-    </div>
-    <div>
-      <span style="font-weight:500;">Modern e-commerce for everyday life.<br>
-      Fast delivery, trusted payments, and outstanding support.</span>
-    </div>
-    <div class="footer-links">
-      <a href="#top" class="footer-link">Back to Top</a>
-      <a href="mailto:fadamxyz@gmail.com" class="footer-link">Contact</a>
-      <a href="https://nexco.com/thanks" class="footer-link">Thank You Page</a>
-      <a href="#" class="footer-link">Privacy Policy</a>
-      <a href="#" class="footer-link">Terms of Service</a>
-    </div>
-    <div style="margin-top:1em;font-size:0.99em;">
-      &copy; 2025 nexco. All rights reserved.
-    </div>
-  </footer>
-  <!-- Inline JS for interactivity and analytics placeholder -->
-  <script>
-    // Gallery image switch
-    const images = [
-      "https://cdn.orderonline.id/uploads/images_7470321735137133587.png",
-      "https://cdn.orderonline.id/uploads/images_1073891735137133315.png",
-      "https://cdn.orderonline.id/uploads/images_9983551735137131504.png",
-      "https://cdn.orderonline.id/uploads/images_2981291735137132861.png",
-      "https://cdn.orderonline.id/uploads/images_2151971735137133080.png"
-    ];
-    function switchImage(idx) {
-      document.getElementById('mainImage').src = images[idx];
-      document.querySelectorAll('.gallery-thumb').forEach((t,i) => {
-        if(i===idx) t.classList.add('active');
-        else t.classList.remove('active');
-      });
-    }
-    // Quantity/Price update
-    function updatePrice() {
-      const qty = parseInt(document.getElementById('quantity').value, 10);
-      const pricePer = 68.00;
-      let total = (qty * pricePer).toFixed(2);
-      document.getElementById('priceDisplay').textContent = '$' + total;
-      document.getElementById('ctaPrice').textContent = '$' + total;
-      document.getElementById('paypalAmountInput').value = total;
-    }
-    document.getElementById('quantity').addEventListener('change', updatePrice);
 
-    // Express checkout (emulated)
-    function paypalExpressCheckout() {
-      // In production: integrate PayPal JS SDK for real express checkout
-      window.alert('Redirecting to PayPal Express Checkout...');
-      document.getElementById('purchaseForm').submit();
-    }
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        const productSwiper = new Swiper('.product-slider', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
 
-    // Conversion tracking placeholder (replace with real analytics)
-    window.addEventListener('DOMContentLoaded', function(){
-      // Example: Google Analytics, Facebook Pixel, etc.
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({'event':'landing_page_view','product':'Night Forge'});
-    });
-  </script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Quantity Handler
+        const quantityDisplay = document.getElementById('quantity-display');
+        const decrementBtn = document.getElementById('decrement-qty');
+        const incrementBtn = document.getElementById('increment-qty');
+        const totalPriceElement = document.getElementById('total-price');
+        const paypalAmountInput = document.getElementById('paypal-amount');
+        const pricePerUnit = 68.00;
+        
+        let quantity = 1;
+        
+        function updateQuantityAndPrice() {
+            quantityDisplay.textContent = quantity;
+            const totalPrice = (pricePerUnit * quantity).toFixed(2);
+            totalPriceElement.textContent = `$${totalPrice}`;
+            paypalAmountInput.value = totalPrice;
+            
+            // Update PayPal button text
+            const paypalButton = document.querySelector('.paypal-btn');
+            paypalButton.innerHTML = `<i class="fab fa-paypal text-xl mr-3"></i>BUY NOW - $${totalPrice}`;
+        }
+        
+        decrementBtn.addEventListener('click', () => {
+            if (quantity > 1) {
+                quantity--;
+                updateQuantityAndPrice();
+            }
+        });
+        
+        incrementBtn.addEventListener('click', () => {
+            quantity++;
+            updateQuantityAndPrice();
+        });
+        
+        // FAq Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                if (answer.classList.contains('hidden')) {
+                    answer.classList.remove('hidden');
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    answer.classList.add('hidden');
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+        
+        // Image Gallery Interaction
+        const galleryImages = document.querySelectorAll('.product-gallery img');
+        const mainImage = document.querySelector('.hero-section img');
+        
+        galleryImages.forEach(img => {
+            img.addEventListener('click', () => {
+                mainImage.src = img.src;
+                mainImage.classList.remove('animated');
+                void mainImage.offsetWidth; // Trigger reflow
+                mainImage.classList.add('animated');
+            });
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
